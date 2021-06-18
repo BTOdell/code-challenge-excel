@@ -1,0 +1,25 @@
+{
+  "name": "code-challenge-excel",
+  "version": "1.0.0",
+  "description": "Transforms SQL data into an Excel spreadsheet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BTOdell/code-challenge-excel.git"
+  },
+  "keywords": [
+    "whitebox",
+    "sql",
+    "excel",
+    "xlsx"
+  ],
+  "author": "Bradley Odell",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/BTOdell/code-challenge-excel/issues"
+  },
+  "homepage": "https://github.com/BTOdell/code-challenge-excel#readme"
+}
