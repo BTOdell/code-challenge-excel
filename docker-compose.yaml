@@ -1,0 +1,16 @@
+version: "3.4"
+services:
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecretrootpassword
+      MYSQL_DATABASE: whitebox
+      MYSQL_USER: whiteboxuser
+      MYSQL_PASSWORD: supersecretpassword
+    volumes:
+      # This will cause the mysql docker image to automatically read into the database
+      - ./data.sql.gz:/docker-entrypoint-initdb.d/data.sql.gz
+    ports:
+      - "3306:3306"
