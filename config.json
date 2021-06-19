@@ -1,0 +1,7 @@
+{
+  "host": "localhost",
+  "database": "whitebox",
+  "user": "whiteboxuser",
+  "password": "supersecretpassword",
+  "clientID": 1240
+}

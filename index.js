@@ -1,15 +1,10 @@
 const MySQL = require("mysql");
 const {sqlToXlsx} = require("./processing");
 
-const CLIENT_ID = 1240;
+const {host, database, user, password, clientID} = require("./config.json");
 
 // Connect to database
-const connection = MySQL.createConnection({
-    host: 'localhost',
-    database: 'whitebox',
-    user: 'whiteboxuser',
-    password: 'supersecretpassword'
-});
+const connection = MySQL.createConnection({host, database, user, password});
 connection.connect();
 
 // Query database for rows of specified client
@@ -19,7 +14,7 @@ const query = `
     WHERE client_id = ?
     ORDER BY start_weight ASC
 `;
-connection.query(query, [CLIENT_ID], (error, results) => {
+connection.query(query, [clientID], (error, results) => {
     if (error) {
         throw error;
     }
