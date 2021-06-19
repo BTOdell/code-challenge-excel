@@ -3,5 +3,6 @@
   "database": "whitebox",
   "user": "whiteboxuser",
   "password": "supersecretpassword",
-  "clientID": 1240
+  "clientID": 1240,
+  "output": "output.xlsx"
 }

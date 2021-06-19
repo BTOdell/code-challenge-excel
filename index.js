@@ -1,7 +1,7 @@
 const MySQL = require("mysql");
 const {sqlToXlsx} = require("./processing");
 
-const {host, database, user, password, clientID} = require("./config.json");
+const {host, database, user, password, clientID, output} = require("./config.json");
 
 // Connect to database
 const connection = MySQL.createConnection({host, database, user, password});
@@ -18,8 +18,8 @@ connection.query(query, [clientID], (error, results) => {
     if (error) {
         throw error;
     }
-    sqlToXlsx(results).then(() => {
-        console.log("File written.");
+    sqlToXlsx(results).xlsx.writeFile(output).then(() => {
+        console.log("File written to " + output);
     });
 });
 

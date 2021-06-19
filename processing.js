@@ -12,7 +12,7 @@ function createRow(startWeight, endWeight, zones) {
     return row;
 }
 
-exports.sqlToXlsx = async function (results) {
+exports.sqlToXlsx = function (results) {
     const workbook = new ExcelJS.Workbook();
 
     function sheet(name, locale, shippingSpeed) {
@@ -31,7 +31,6 @@ exports.sqlToXlsx = async function (results) {
             }
         }
         const zones = Array.from(zoneSet).sort();
-        console.log(name, zones);
 
         // Columns and header row
         const columns = [
@@ -56,7 +55,6 @@ exports.sqlToXlsx = async function (results) {
                 }
             }
         }
-        console.log(rowMap);
 
         // Fill data
         for (const result of results) {
@@ -79,5 +77,5 @@ exports.sqlToXlsx = async function (results) {
     sheet("International Economy Rates", "international", "intlEconomy");
     sheet("International Expedited Rates", "international", "intlExpedited");
 
-    return workbook.xlsx.writeFile("output.xlsx");
+    return workbook
 }
