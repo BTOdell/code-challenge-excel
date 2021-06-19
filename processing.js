@@ -3,13 +3,25 @@ const ExcelJS = require("exceljs");
 // For start weight and end weight
 const COLUMN_OFFSET = 2;
 
+// The number of decimal places to round to
+const DECIMAL_ROUNDING = 2;
+
 function createRow(startWeight, endWeight, zones) {
     const rowLength = COLUMN_OFFSET + zones.length;
-    const row = [startWeight, endWeight];
+    const row = [fixedRound(startWeight), fixedRound(endWeight)];
     while (row.length < rowLength) {
-        row.push(0);
+        row.push("");
     }
     return row;
+}
+
+function round(value, precision) {
+    const multiplier = Math.pow(10, precision);
+    return Math.round(value * multiplier) / multiplier;
+}
+
+function fixedRound(value) {
+    return round(value, DECIMAL_ROUNDING).toFixed(DECIMAL_ROUNDING);
 }
 
 exports.sqlToXlsx = function (results) {
@@ -66,7 +78,7 @@ exports.sqlToXlsx = function (results) {
                 const row = sheet.getRow(rowNumber);
                 const zone = result["zone"];
                 const zoneKey = 'zone' + zone;
-                row.getCell(zoneKey).value = result["rate"];
+                row.getCell(zoneKey).value = fixedRound(result["rate"]);
             }
         }
     }
